@@ -1,4 +1,8 @@
 ﻿
+<title>Convite de Lobolo - Joana e Esrom</title>
+<link rel="icon" type="image/png" href="assets/flor-laranja-canto.png">
+<link rel="apple-touch-icon" href="assets/flor-laranja-canto.png">
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
 
@@ -96,6 +100,10 @@
     height: 100%;
     display: block;
     object-fit: cover;
+  }
+
+  .photo-placeholder img {
+    object-position: center 24%;
   }
 
   .ornament {
@@ -280,7 +288,7 @@
     font-size: 32px;
     font-weight: 400;
     font-style: italic;
-    color: #F5EDD8;
+    color: #C8952A;
   }
 
   .name-amp {
@@ -537,7 +545,7 @@
     margin-top: 1rem;
     font-size: 11px;
     letter-spacing: 2px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     color: #C8952A;
   }
 
@@ -605,7 +613,8 @@
     font-size: 10px;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: rgba(245,237,216,0.35);
+    /* color: rgba(245,237,216,0.7); */
+    color: #C8952A;
   }
 
   /* ── NAV DOTS ── */
@@ -729,7 +738,7 @@
 
   .hero-title,
   .section-title,
-  .name-main,
+  /* .name-main, */
   .detail-value,
   .program-desc strong {
     color: #FFF7E8;
@@ -974,7 +983,7 @@
 
   .hero-title,
   .section-title,
-  .name-main,
+  /* .name-main, */
   .detail-value,
   .program-desc strong,
   .success-msg h3 {
@@ -1249,7 +1258,7 @@
   }
 
   .section-title,
-  .name-main,
+  /* .name-main, */
   .detail-value,
   .program-desc strong,
   .success-msg h3 {
@@ -1401,11 +1410,20 @@
   }
 
   .flower-corner-bottom {
-    width: 185px;
+    width: 165px;
     bottom: 0;
-    left: -36px;
-    transform: none;
+    left: -28px;
+    transform: rotate(180deg) scaleX(-1);
     z-index: 0;
+  }
+
+  .culture-ribbon {
+    position: relative;
+    z-index: 3;
+  }
+
+  .culture-ribbon span {
+    background: rgba(255, 249, 239, 0.92);
   }
 
   .hero::after {
@@ -1414,7 +1432,48 @@
 
   .cta-btn {
     position: relative;
-    z-index: 2;
+    z-index: 4;
+    margin-top: 1.35rem;
+  }
+
+  #s1 .photo-placeholder {
+    height: auto;
+    aspect-ratio: 3 / 4;
+    max-height: none;
+  }
+
+  #s1 .photo-placeholder img {
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .couple-subtitle {
+    display: block;
+    color: var(--cover-wine);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 0.8rem;
+  }
+
+  .name-main {
+    color: var(--cover-orange) !important;
+  }
+
+  .gallery-item:first-child {
+    aspect-ratio: 4 / 3;
+  }
+
+  .gallery-item:first-child img {
+    object-position: center 18%;
+  }
+
+  .gallery-item:nth-child(2) img {
+    object-position: center 18%;
+  }
+
+  .gallery-item:nth-child(3) img {
+    object-position: center 28%;
   }
 </style>
 
@@ -1477,29 +1536,30 @@
   <div class="section" id="s1">
     <span class="section-label">O Casal</span>
     <div class="photo-placeholder">
-      <img src="assets/lobolo-family.png" alt="Ilustracao do casal com as familias durante a bencao do lobolo">
+      <img src="assets/lobolo-family.jpeg" alt="Joana e Esrom no dia do lobolo">
     </div>
     <div class="names-display">
-      <div class="serif name-main">Joana</div>
-      <span class="name-amp">&amp;</span>
-      <div class="serif name-main">Esrom</div>
+      <div class="serif name-main">Joana &amp; Esrom</div>
     </div>
     <p class="couple-msg">
-      O que começou como um encontro simples tornou-se numa história de amor que atravessa duas famílias, duas culturas e um futuro partilhado.
+      <strong class="serif couple-subtitle">Das ruas de Oran, para a vida...</strong>
+      O nosso caminho começou, enquanto partilhávamos os desafios e os sonhos da vida universitária.
       <br><br>
-      Hoje, as nossas famílias unem-se para celebrar este passo sagrado segundo as nossas tradições.
+      O que começou como uma amizade transformou-se numa história construída com carinho, respeito e propósito.
+      <br><br>
+      Hoje, com a bênção das nossas famílias, nos reunimos para celebrar o nosso casamento tradicional e dar mais um passo na jornada que escolhemos seguir juntos.
     </p>
 
     <div class="lobolo-symbols">
       <div class="symbol-card">
         <i class="ti ti-users-group symbol-icon" aria-hidden="true"></i>
         <span class="symbol-title">Famílias</span>
-        <p class="symbol-text">O lobolo honra a chegada de duas casas que passam a caminhar juntas.</p>
+        <p class="symbol-text">Duas tradicoes, um só caminho.</p>
       </div>
       <div class="symbol-card">
         <i class="ti ti-bowl symbol-icon" aria-hidden="true"></i>
         <span class="symbol-title">Partilha</span>
-        <p class="symbol-text">Mesa, palavra, música e acolhimento fazem parte da celebração.</p>
+        <p class="symbol-text">Alegria e celebração com amor.</p>
       </div>
       <div class="symbol-card full">
         <i class="ti ti-home-heart symbol-icon" aria-hidden="true"></i>
@@ -1522,7 +1582,7 @@
       <div class="detail-card">
         <i class="ti ti-calendar detail-icon" aria-hidden="true"></i>
         <span class="detail-label">Data</span>
-        <span class="detail-value">Sábado<br>27 de Junho, 2026</span>
+        <span class="detail-value">Sábado<br>27 de Junho de 2026</span>
       </div>
       <div class="detail-card">
         <i class="ti ti-clock detail-icon" aria-hidden="true"></i>
@@ -1532,12 +1592,12 @@
       <div class="detail-card full">
         <i class="ti ti-map-pin detail-icon" aria-hidden="true"></i>
         <span class="detail-label">Local</span>
-        <span class="detail-value">Bairro do Zimpeto, Cruzamento de Matendene, Maputo</span>
+        <span class="detail-value">Cruzamento de Matendene, Bairro do Zimpeto, Maputo</span>
       </div>
       <div class="detail-card full">
         <i class="ti ti-shirt detail-icon" aria-hidden="true"></i>
         <span class="detail-label">Sugestão de Vestuário</span>
-        <span class="detail-value">Trajes tradicionais africanos ou tons terrosos — terracota, dourado, castanho</span>
+        <span class="detail-value">Trajes tradicionais africanos ou tons terrosos.</span>
       </div>
     </div>
 
@@ -1545,24 +1605,28 @@
       <span class="section-label">Programa</span>
       <div class="program-list">
         <div class="program-item">
-          <span class="program-time">10h00</span>
+          <span class="program-time">10h30</span>
           <div class="program-desc"><strong>Chegada das famílias</strong>Recepção e cumprimentos tradicionais</div>
         </div>
         <div class="program-item">
           <span class="program-time">11h00</span>
-          <div class="program-desc"><strong>Abertura da cerimónia</strong>Palavras dos anciãos e bênção</div>
+          <div class="program-desc"><strong>Abertura da cerimónia</strong>Palavras e bênção dos madodas</div>
         </div>
         <div class="program-item">
           <span class="program-time">12h00</span>
-          <div class="program-desc"><strong>Negociação do Lobolo</strong>Encontro sagrado entre famílias</div>
+          <div class="program-desc"><strong>"Operação Lobolo"</strong>Grande encontro entre a família Xirindza e Chilundzo</div>
         </div>
         <div class="program-item">
           <span class="program-time">14h00</span>
           <div class="program-desc"><strong>Celebração e refeição</strong>Comida, música e alegria partilhada</div>
         </div>
         <div class="program-item" style="border-bottom: none;">
-          <span class="program-time">17h00</span>
+          <span class="program-time">18h00</span>
           <div class="program-desc"><strong>Encerramento</strong>Bênção final das famílias</div>
+        </div>
+        <div class="program-item" style="border-bottom: none;">
+          <span class="program-time">Ao raiar <br> do Sol</span>
+          <div class="program-desc"><strong>Diversão</strong>Dança e curtição ate perder o BI😂</div>
         </div>
       </div>
     </div>
@@ -1672,23 +1736,23 @@
   <!-- 7. MENSAGEM DAS FAMÍLIAS -->
   <div class="section" id="s6">
     <span class="section-label">Bênção das Famílias</span>
-    <h2 class="serif section-title">Uma palavra<br>de coração</h2>
+    <!-- <h2 class="serif section-title">Uma palavra<br>de coração</h2> -->
 
     <div class="family-quote">
-      <p>"Com os corações cheios de alegria e os olhos cheios de gratidão, as famílias Dlamini e Sithole convidam-nos a partilhar este momento sagrado. Que esta união traga paz, amor e prosperidade para as gerações que hão de vir."</p>
-      <div class="family-from">— Família Dlamini &amp; Família Sithole</div>
+      <p>"Com gratidão pelos caminhos que nos trouxeram até aqui, celebramos a união das nossas famílias e confiamos a Deus os passos que ainda estão por vir."</p>
+      <div class="family-from">— Família Xirindza &amp; Família Chilundzo</div>
     </div>
 
     <div style="margin-top: 2rem;">
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img src="assets/lobolo-table.png" alt="Mesa de celebracao do lobolo com tecidos, cestos e presentes tradicionais">
+          <img src="assets/4.jpeg" alt="Mesa de celebracao do lobolo com tecidos, cestos e presentes tradicionais">
         </div>
         <div class="gallery-item">
-          <img src="assets/lobolo-hero.png" alt="Familias reunidas numa celebracao de lobolo">
+          <img src="assets/7.jpeg" alt="Familias reunidas numa celebracao de lobolo">
         </div>
         <div class="gallery-item">
-          <img src="assets/lobolo-family.png" alt="Casal e familias no momento de bencao">
+          <img src="assets/9.jpeg" alt="Casal e familias no momento de bencao">
         </div>
       </div>
     </div>
@@ -1703,11 +1767,13 @@
   <div class="closing">
     <div class="ornament" style="margin-bottom: 2rem;">◆ ◇ ◆</div>
     <p class="serif closing-quote">
-      "Com gratidão e alegria, convidamos você a testemunhar esta união sagrada de famílias, tradição e amor."
+      "Acima de tudo, revistam-se do amor, que é o elo perfeito."
+      <br>
+      (Colossenses 3:14)
     </p>
     <div class="closing-names serif">Joana &amp; Esrom</div>
-    <div class="closing-date">27 · Junho · 2026 · Zimpeto, Maputo</div>
-    <div style="margin-top: 3rem; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(245,237,216,0.2);">Lobolo · Uma Tradição Sagrada</div>
+    <!-- <div class="closing-date">27 · Junho · 2026 · Zimpeto, Maputo</div>
+    <div style="margin-top: 3rem; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(163, 120, 11, 0.2);">Lobolo · Uma Tradição Sagrada</div> -->
   </div>
 
 </div>
