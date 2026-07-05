@@ -77,6 +77,31 @@
       .nav { width: 100%; }
       .nav a, button { flex: 1; text-align: center; }
     }
+
+    .music-toggle {
+      position: fixed;
+      right: 16px;
+      bottom: 18px;
+      z-index: 240;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      padding: 0;
+      color: #FFF9EF;
+      background: linear-gradient(135deg, var(--orange), var(--wine));
+      box-shadow: 0 12px 28px rgba(154, 20, 41, 0.20);
+      font: inherit;
+      font-size: 17px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .music-toggle:not(.is-playing) {
+      color: var(--wine);
+      background: rgba(255, 249, 239, 0.92);
+      border: 1px solid var(--line);
+    }
   </style>
 </head>
 <body>
@@ -123,6 +148,9 @@
     </section>
   </main>
 
+  <audio id="bg-music" src="../assets/carla-bruni-quelqu-un-ma-dit.mp3" autoplay loop playsinline preload="auto"></audio>
+  <button class="music-toggle" id="music-toggle" type="button" onclick="toggleBackgroundMusic()" aria-label="Tocar música">▶</button>
+
   <script>
     let confirmations = [
       {"presenca":"Sim, vou","nome":"Egídio Dimande","telefone":"869576303","created_at":"2026-06-19T03:09:58.810Z"},
@@ -143,6 +171,46 @@
       {"presenca":"Sim, vou","nome":"Jorge Manuel de Alberto Chilundo","telefone":"848585873","created_at":"2026-06-04T05:18:24.297Z"},
       {"presenca":"Sim, vou","nome":"Esperança Mosse","telefone":"843968894","created_at":"2026-06-03T23:51:31.421Z"}
     ];
+
+    function setupBackgroundMusic() {
+      const audio = document.getElementById('bg-music');
+      if (!audio) return;
+      audio.volume = 0.22;
+      audio.muted = false;
+      const play = () => audio.play().then(updateMusicButton).catch(updateMusicButton);
+      audio.addEventListener('play', updateMusicButton);
+      audio.addEventListener('pause', updateMusicButton);
+      play();
+      window.addEventListener('load', play, { once: true });
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) play();
+      });
+      ['click', 'touchstart', 'keydown'].forEach((eventName) => {
+        document.addEventListener(eventName, play, { once: true, passive: true });
+      });
+    }
+    setupBackgroundMusic();
+
+    function updateMusicButton() {
+      const audio = document.getElementById('bg-music');
+      const btn = document.getElementById('music-toggle');
+      if (!audio || !btn) return;
+      const playing = !audio.paused;
+      btn.textContent = playing ? '❚❚' : '▶';
+      btn.setAttribute('aria-label', playing ? 'Pausar música' : 'Tocar música');
+      btn.classList.toggle('is-playing', playing);
+    }
+
+    function toggleBackgroundMusic() {
+      const audio = document.getElementById('bg-music');
+      if (!audio) return;
+      if (audio.paused) {
+        audio.play().then(updateMusicButton).catch(updateMusicButton);
+      } else {
+        audio.pause();
+        updateMusicButton();
+      }
+    }
 
     function isYes(item) { return item.presenca.toLowerCase().startsWith('sim'); }
     function esc(value) { return String(value || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }

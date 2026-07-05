@@ -1721,6 +1721,31 @@
       padding: 7px;
     }
   }
+
+  .music-toggle {
+    position: fixed;
+    right: 16px;
+    bottom: 84px;
+    z-index: 240;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 50%;
+    padding: 0;
+    color: #FFF9EF;
+    background: linear-gradient(135deg, var(--cover-orange), var(--cover-wine));
+    box-shadow: 0 12px 28px rgba(154, 20, 41, 0.22);
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .music-toggle:not(.is-playing) {
+    color: var(--cover-wine);
+    background: rgba(255, 249, 239, 0.92);
+    border: 1px solid rgba(216, 163, 60, 0.36);
+  }
 </style>
 
 <div class="inv" id="inv">
@@ -2042,10 +2067,53 @@
 
 </div>
 
+<audio id="bg-music" src="assets/carla-bruni-quelqu-un-ma-dit.mp3" autoplay loop playsinline preload="auto"></audio>
+<button class="music-toggle" id="music-toggle" type="button" onclick="toggleBackgroundMusic()" aria-label="Tocar música">▶</button>
+
 <script>
   const sections = ['s0','s1','s2','s3','s4','s5','s6'];
   const quickTargets = [0, 1, 2, 5];
   let attending = null;
+
+  function setupBackgroundMusic() {
+    const audio = document.getElementById('bg-music');
+    if (!audio) return;
+    audio.volume = 0.28;
+    audio.muted = false;
+    const play = () => audio.play().then(updateMusicButton).catch(updateMusicButton);
+    audio.addEventListener('play', updateMusicButton);
+    audio.addEventListener('pause', updateMusicButton);
+    play();
+    window.addEventListener('load', play, { once: true });
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) play();
+    });
+    ['click', 'touchstart', 'keydown'].forEach((eventName) => {
+      document.addEventListener(eventName, play, { once: true, passive: true });
+    });
+  }
+  setupBackgroundMusic();
+
+  function updateMusicButton() {
+    const audio = document.getElementById('bg-music');
+    const btn = document.getElementById('music-toggle');
+    if (!audio || !btn) return;
+    const playing = !audio.paused;
+    btn.textContent = playing ? '❚❚' : '▶';
+    btn.setAttribute('aria-label', playing ? 'Pausar música' : 'Tocar música');
+    btn.classList.toggle('is-playing', playing);
+  }
+
+  function toggleBackgroundMusic() {
+    const audio = document.getElementById('bg-music');
+    if (!audio) return;
+    if (audio.paused) {
+      audio.play().then(updateMusicButton).catch(updateMusicButton);
+    } else {
+      audio.pause();
+      updateMusicButton();
+    }
+  }
 
   function scrollToSection(i) {
     const target = document.getElementById(sections[i]);
