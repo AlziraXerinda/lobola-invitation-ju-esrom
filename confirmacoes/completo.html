@@ -388,7 +388,7 @@
       right: 16px;
       bottom: 18px;
       z-index: 240;
-      width: 42px;
+      width: 46px;
       height: 42px;
       border: 0;
       border-radius: 50%;
@@ -397,9 +397,22 @@
       background: linear-gradient(135deg, var(--orange), var(--wine));
       box-shadow: 0 12px 28px rgba(154, 20, 41, 0.20);
       font: inherit;
-      font-size: 17px;
+      font-size: 15px;
       line-height: 1;
       cursor: pointer;
+    }
+
+    .music-note {
+      position: absolute;
+      top: 6px;
+      left: 8px;
+      font-size: 10px;
+      opacity: 0.9;
+    }
+
+    .music-state {
+      display: inline-block;
+      transform: translate(2px, 1px);
     }
 
     .music-toggle:not(.is-playing) {
@@ -488,7 +501,9 @@
   </main>
 
   <audio id="bg-music" src="../assets/carla-bruni-quelqu-un-ma-dit.mp3" autoplay loop playsinline preload="auto"></audio>
-  <button class="music-toggle" id="music-toggle" type="button" onclick="toggleBackgroundMusic()" aria-label="Tocar música">▶</button>
+  <button class="music-toggle" id="music-toggle" type="button" onclick="toggleBackgroundMusic()" aria-label="Tocar música">
+    <span class="music-note" aria-hidden="true">♪</span><span class="music-state">▶</span>
+  </button>
 
   <script>
     let confirmations = [
@@ -537,7 +552,8 @@
       const btn = document.getElementById('music-toggle');
       if (!audio || !btn) return;
       const playing = !audio.paused;
-      btn.textContent = playing ? '❚❚' : '▶';
+      const state = btn.querySelector('.music-state');
+      if (state) state.textContent = playing ? '❚❚' : '▶';
       btn.setAttribute('aria-label', playing ? 'Pausar música' : 'Tocar música');
       btn.classList.toggle('is-playing', playing);
     }
