@@ -463,7 +463,7 @@
   </main>
 
   <script>
-    const confirmations = [
+    let confirmations = [
       {"presenca":"Sim, vou","nome":"Egídio Dimande","telefone":"869576303","mensagem":"Que du bonheur","created_at":"2026-06-19T03:09:58.810Z"},
       {"presenca":"Sim, vou","nome":"Anatércia Amélia Nhamende","telefone":"860194933","mensagem":"É uma dádiva de Deus, encontrar um amor que dá sentido a vida e quando Deus diz sim ninguém diz não. Benção e felicidade desejo-lhes","created_at":"2026-06-11T07:37:38.709Z"},
       {"presenca":"Sim, vou","nome":"Cláudio J.B. de Araújo","telefone":"845985930","mensagem":"Os meus parabéns antecipados pelo passo por dar, que este seja somente o início de muitas outras obras do Senhor que serão manifestadas em vossas vidas...e que o vosso lar seja repleto de muito amor, felicidade, sucesso e alegria!","created_at":"2026-06-11T04:12:35.189Z"},
@@ -507,6 +507,79 @@
       }[char]));
     }
 
+    function parseCsv(text) {
+      const rows = [];
+      let row = [];
+      let value = '';
+      let inQuotes = false;
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const next = text[i + 1];
+
+        if (char === '"' && inQuotes && next === '"') {
+          value += '"';
+          i++;
+        } else if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+          row.push(value);
+          value = '';
+        } else if ((char === '\n' || char === '\r') && !inQuotes) {
+          if (char === '\r' && next === '\n') i++;
+          row.push(value);
+          if (row.some((cell) => cell.trim() !== '')) rows.push(row);
+          row = [];
+          value = '';
+        } else {
+          value += char;
+        }
+      }
+
+      row.push(value);
+      if (row.some((cell) => cell.trim() !== '')) rows.push(row);
+      return rows;
+    }
+
+    function csvToConfirmations(text) {
+      const rows = parseCsv(text.replace(/^\uFEFF/, ''));
+      if (rows.length < 2) return [];
+
+      const headers = rows[0].map((header) => header.trim().toLowerCase());
+      return rows.slice(1).map((row) => {
+        const item = {};
+        headers.forEach((header, index) => {
+          item[header] = (row[index] || '').trim();
+        });
+
+        return {
+          presenca: item.presenca || item.presença || item.attendance || '',
+          nome: item.nome || item.name || '',
+          telefone: item.telefone || item.phone || '',
+          mensagem: item.mensagem || item.message || '',
+          created_at: item.created_at || item.createdat || item.submitted_at || item.date || new Date().toISOString()
+        };
+      }).filter((item) => item.nome || item.telefone || item.mensagem);
+    }
+
+    function loadInitialCsv() {
+      fetch('dados.csv', { cache: 'no-store' })
+        .then((response) => {
+          if (!response.ok) throw new Error('CSV não encontrado');
+          return response.text();
+        })
+        .then((text) => {
+          const csvData = csvToConfirmations(text);
+          if (csvData.length) {
+            confirmations = csvData;
+          }
+          render();
+        })
+        .catch(() => {
+          render();
+        });
+    }
+
     function filteredData() {
       const query = document.getElementById('search').value.trim().toLowerCase();
       return confirmations.filter((item) => {
@@ -532,6 +605,7 @@
     }
 
     function render() {
+      renderStats();
       const data = filteredData();
       const rows = document.getElementById('rows');
       const messages = data.filter((item) => item.mensagem.trim());
@@ -583,8 +657,7 @@
       URL.revokeObjectURL(link.href);
     }
 
-    renderStats();
-    render();
+    loadInitialCsv();
   </script>
 </body>
 </html>
