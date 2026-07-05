@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Lista de Confirmações - Joana e Esrom</title>
+  <link rel="icon" type="image/png" href="../assets/flor-laranja-canto.png">
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --paper: #FFF9EF;
+      --ivory: #F7F4EA;
+      --orange: #DF5A18;
+      --wine: #9A1429;
+      --brown: #8D6757;
+      --dark: #17100D;
+      --gold: #D8A33C;
+      --line: rgba(216, 163, 60, 0.30);
+      --ok: #43613C;
+    }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, rgba(223, 90, 24, 0.07), rgba(154, 20, 41, 0.03)), var(--ivory);
+      color: var(--dark);
+    }
+    .page { width: min(980px, calc(100% - 28px)); margin: 0 auto; padding: 32px 0 44px; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 24px; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { width: 52px; height: 52px; object-fit: cover; }
+    .eyebrow { display: block; color: var(--orange); font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+    h1 { margin: 4px 0 0; color: var(--wine); font: 400 clamp(30px, 5vw, 50px)/0.98 Georgia, serif; }
+    .nav { display: flex; gap: 8px; flex-wrap: wrap; }
+    .nav a, button {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 13px;
+      color: var(--wine);
+      background: rgba(255, 249, 239, 0.76);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    button.primary { color: #FFF9EF; background: linear-gradient(135deg, var(--orange), var(--wine)); border: 0; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+    .stat { padding: 18px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,249,239,.82); box-shadow: 0 12px 28px rgba(112,74,51,.10); }
+    .stat span { display: block; color: var(--brown); font-size: 12px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; }
+    .stat strong { color: var(--wine); font: 400 40px/1 Georgia, serif; }
+    .tools { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-bottom: 16px; }
+    input {
+      min-height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 14px;
+      background: rgba(255,249,239,.90);
+      color: var(--dark);
+      font: inherit;
+    }
+    .panel { border: 1px solid var(--line); border-radius: 8px; background: rgba(255,249,239,.80); overflow: hidden; box-shadow: 0 14px 34px rgba(112,74,51,.10); }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; min-width: 680px; border-collapse: collapse; }
+    th, td { padding: 14px 16px; border-bottom: 1px solid rgba(216,163,60,.22); text-align: left; font-size: 14px; }
+    th { color: var(--orange); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; background: rgba(239,225,204,.48); }
+    tr:last-child td { border-bottom: 0; }
+    .name { font-weight: 850; }
+    .badge { display: inline-flex; min-height: 26px; align-items: center; border-radius: 999px; padding: 0 10px; color: #FFF9EF; font-size: 12px; font-weight: 850; white-space: nowrap; }
+    .yes { background: var(--ok); }
+    .no { background: var(--wine); }
+    .empty { padding: 28px; color: var(--brown); text-align: center; }
+    @media (max-width: 720px) {
+      header, .tools { grid-template-columns: 1fr; flex-direction: column; align-items: stretch; }
+      .stats { grid-template-columns: 1fr; }
+      .nav { width: 100%; }
+      .nav a, button { flex: 1; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="brand">
+        <img src="../assets/flor-laranja-canto.png" alt="">
+        <div>
+          <span class="eyebrow">Joana & Esrom</span>
+          <h1>Confirmações<br>sem mensagens</h1>
+        </div>
+      </div>
+      <!-- <nav class="nav" aria-label="Páginas">
+        <a href="completo.html">Completo</a>
+        <a href="mensagens.html">Mensagens</a>
+      </nav> -->
+    </header>
+
+    <section class="stats">
+      <div class="stat"><span>Total</span><strong id="total">0</strong></div>
+      <div class="stat"><span>Confirmados</span><strong id="yes">0</strong></div>
+      <div class="stat"><span>Não vão</span><strong id="no">0</strong></div>
+    </section>
+
+    <section class="tools">
+      <input id="search" type="search" placeholder="Pesquisar por nome ou telefone..." oninput="render()">
+      <button class="primary" type="button" onclick="downloadCsv()">Exportar CSV</button>
+    </section>
+
+    <section class="panel">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Presença</th>
+              <th>Telefone</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const confirmations = [
+      {"presenca":"Sim, vou","nome":"Egídio Dimande","telefone":"869576303","created_at":"2026-06-19T03:09:58.810Z"},
+      {"presenca":"Sim, vou","nome":"Anatércia Amélia Nhamende","telefone":"860194933","created_at":"2026-06-11T07:37:38.709Z"},
+      {"presenca":"Sim, vou","nome":"Cláudio J.B. de Araújo","telefone":"845985930","created_at":"2026-06-11T04:12:35.189Z"},
+      {"presenca":"Sim, vou","nome":"Cirilo de Almeida Manuel José Dique","telefone":"87364127","created_at":"2026-06-05T19:59:33.751Z"},
+      {"presenca":"Sim, vou","nome":"Rosa Cândido","telefone":"","created_at":"2026-06-05T17:06:51.975Z"},
+      {"presenca":"Não posso ir","nome":"David Dimbane","telefone":"843333147","created_at":"2026-06-05T07:00:32.189Z"},
+      {"presenca":"Sim, vou","nome":"Arão da Conceição Silva Massango","telefone":"848668683","created_at":"2026-06-05T06:45:30.119Z"},
+      {"presenca":"Sim, vou","nome":"José Duvane (Zeca) e Getúlia Duvane","telefone":"825254104","created_at":"2026-06-04T20:19:09.794Z"},
+      {"presenca":"Sim, vou","nome":"Teste","telefone":"843968894","created_at":"2026-06-04T12:20:18.139Z"},
+      {"presenca":"Sim, vou","nome":"Beth Namalué","telefone":"826939427","created_at":"2026-06-04T11:40:32.552Z"},
+      {"presenca":"Sim, vou","nome":"Ester Xerinda","telefone":"876755348","created_at":"2026-06-04T08:49:31.560Z"},
+      {"presenca":"Sim, vou","nome":"Gildo","telefone":"864448158","created_at":"2026-06-04T08:23:41.738Z"},
+      {"presenca":"Sim, vou","nome":"Abignet felizberto Simão","telefone":"865980808","created_at":"2026-06-04T07:25:14.873Z"},
+      {"presenca":"Sim, vou","nome":"Francisca Neima","telefone":"869241527","created_at":"2026-06-04T07:20:07.634Z"},
+      {"presenca":"Sim, vou","nome":"Teodósio Comé","telefone":"852773429","created_at":"2026-06-04T05:33:26.515Z"},
+      {"presenca":"Sim, vou","nome":"Jorge Manuel de Alberto Chilundo","telefone":"848585873","created_at":"2026-06-04T05:18:24.297Z"},
+      {"presenca":"Sim, vou","nome":"Esperança Mosse","telefone":"843968894","created_at":"2026-06-03T23:51:31.421Z"}
+    ];
+
+    function isYes(item) { return item.presenca.toLowerCase().startsWith('sim'); }
+    function esc(value) { return String(value || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
+    function date(value) {
+      return new Intl.DateTimeFormat('pt-MZ', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Africa/Maputo' }).format(new Date(value));
+    }
+    function filtered() {
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      return confirmations.filter(item => !q || `${item.nome} ${item.telefone}`.toLowerCase().includes(q));
+    }
+    function render() {
+      const data = filtered();
+      document.getElementById('total').textContent = confirmations.length;
+      document.getElementById('yes').textContent = confirmations.filter(isYes).length;
+      document.getElementById('no').textContent = confirmations.filter(item => !isYes(item)).length;
+      document.getElementById('rows').innerHTML = data.length ? data.map(item => `
+        <tr>
+          <td class="name">${esc(item.nome)}</td>
+          <td><span class="badge ${isYes(item) ? 'yes' : 'no'}">${esc(item.presenca)}</span></td>
+          <td>${esc(item.telefone || '-')}</td>
+          <td>${esc(date(item.created_at))}</td>
+        </tr>
+      `).join('') : '<tr><td colspan="4" class="empty">Nenhuma confirmação encontrada.</td></tr>';
+    }
+    function downloadCsv() {
+      const headers = ['presenca', 'nome', 'telefone', 'created_at'];
+      const rows = filtered().map(item => headers.map(key => `"${String(item[key] || '').replace(/"/g, '""')}"`).join(','));
+      const blob = new Blob([[headers.join(','), ...rows].join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'confirmacoes-sem-mensagens.csv';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+    render();
+  </script>
+</body>
+</html>

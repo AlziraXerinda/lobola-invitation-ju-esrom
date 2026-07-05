@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Confirmações do Lobolo - Joana e Esrom</title>
+  <link rel="icon" type="image/png" href="assets/flor-laranja-canto.png">
+  <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      --paper: #FFF9EF;
+      --ivory: #F7F4EA;
+      --warm: #EFE1CC;
+      --orange: #DF5A18;
+      --wine: #9A1429;
+      --brown: #8D6757;
+      --dark: #17100D;
+      --gold: #D8A33C;
+      --line: rgba(216, 163, 60, 0.28);
+      --ok: #43613C;
+      --no: #9A1429;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(135deg, rgba(223, 90, 24, 0.06), rgba(154, 20, 41, 0.03)),
+        var(--ivory);
+      color: var(--dark);
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 44px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 26px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand img {
+      width: 54px;
+      height: 54px;
+      object-fit: cover;
+    }
+
+    .eyebrow {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--wine);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 5vw, 54px);
+      line-height: 0.95;
+      font-weight: 400;
+    }
+
+    .date-note {
+      margin: 8px 0 0;
+      color: var(--brown);
+      font-size: 13px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .search {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 249, 239, 0.88);
+      color: var(--dark);
+      padding: 0 14px;
+      font: inherit;
+      outline: none;
+    }
+
+    .search:focus {
+      border-color: rgba(223, 90, 24, 0.62);
+      box-shadow: 0 0 0 3px rgba(223, 90, 24, 0.12);
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 8px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 249, 239, 0.72);
+    }
+
+    .filter-btn,
+    .export-btn {
+      min-height: 36px;
+      border: 0;
+      border-radius: 6px;
+      padding: 0 13px;
+      color: var(--brown);
+      background: transparent;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .filter-btn.active,
+    .export-btn {
+      color: #FFF9EF;
+      background: linear-gradient(135deg, var(--orange), var(--wine));
+      box-shadow: 0 10px 24px rgba(154, 20, 41, 0.16);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      min-height: 104px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 249, 239, 0.82);
+      box-shadow: 0 12px 30px rgba(112, 74, 51, 0.10);
+    }
+
+    .stat-label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--brown);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .stat-value {
+      color: var(--wine);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 249, 239, 0.78);
+      box-shadow: 0 14px 34px rgba(112, 74, 51, 0.10);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-title {
+      margin: 0;
+      color: var(--dark);
+      font-size: 15px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .count-pill {
+      min-width: 34px;
+      border-radius: 999px;
+      padding: 5px 10px;
+      color: #FFF9EF;
+      background: linear-gradient(135deg, var(--orange), var(--wine));
+      text-align: center;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(216, 163, 60, 0.20);
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      color: var(--orange);
+      font-size: 11px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      background: rgba(239, 225, 204, 0.48);
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .name {
+      color: var(--dark);
+      font-weight: 800;
+    }
+
+    .phone {
+      color: var(--brown);
+      white-space: nowrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      border-radius: 999px;
+      padding: 0 10px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .badge.yes {
+      color: #FFF9EF;
+      background: var(--ok);
+    }
+
+    .badge.no {
+      color: #FFF9EF;
+      background: var(--no);
+    }
+
+    .message-list {
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+    }
+
+    .message-card {
+      padding: 14px;
+      border: 1px solid rgba(216, 163, 60, 0.24);
+      border-radius: 8px;
+      background: rgba(255, 249, 239, 0.78);
+    }
+
+    .message-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--orange);
+      font-size: 13px;
+    }
+
+    .message-card p {
+      margin: 0;
+      color: var(--brown);
+      font-size: 13px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .empty {
+      padding: 28px;
+      color: var(--brown);
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .topbar,
+      .controls {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .page {
+        width: min(100% - 20px, 1120px);
+        padding-top: 18px;
+      }
+
+      .brand {
+        align-items: flex-start;
+      }
+
+      .brand img {
+        width: 46px;
+        height: 46px;
+      }
+
+      .filter-group {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .filter-btn {
+        padding: 0 8px;
+        font-size: 12px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand">
+        <img src="assets/flor-laranja-canto.png" alt="">
+        <div>
+          <span class="eyebrow">Joana & Esrom</span>
+          <h1>Confirmações<br>do Lobolo</h1>
+          <!-- <p class="date-note">Dados exportados do formulário Netlify.</p> -->
+        </div>
+      </div>
+      <button class="export-btn" type="button" onclick="downloadCsv()">Exportar CSV</button>
+    </header>
+
+    <section class="stats" aria-label="Resumo das confirmações">
+      <div class="stat-card">
+        <span class="stat-label">Total</span>
+        <span class="stat-value" id="stat-total">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Confirmados</span>
+        <span class="stat-value" id="stat-yes">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Não vão</span>
+        <span class="stat-value" id="stat-no">0</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Mensagens</span>
+        <span class="stat-value" id="stat-msg">0</span>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Filtros">
+      <input class="search" id="search" type="search" placeholder="Pesquisar por nome, telefone ou mensagem..." oninput="render()">
+      <div class="filter-group" role="group" aria-label="Filtrar por presença">
+        <button class="filter-btn active" type="button" data-filter="todos" onclick="setFilter('todos')">Todos</button>
+        <button class="filter-btn" type="button" data-filter="sim" onclick="setFilter('sim')">Sim</button>
+        <button class="filter-btn" type="button" data-filter="nao" onclick="setFilter('nao')">Não</button>
+      </div>
+    </section>
+
+    <section class="main-grid">
+      <div class="panel">
+        <div class="panel-head">
+          <h2 class="panel-title">Lista de convidados</h2>
+          <span class="count-pill" id="visible-count">0</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Presença</th>
+                <th>Telefone</th>
+                <th>Data</th>
+                <th>Mensagem</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <div class="panel-head">
+          <h2 class="panel-title">Mensagens</h2>
+          <span class="count-pill" id="message-count">0</span>
+        </div>
+        <div class="message-list" id="messages"></div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const confirmations = [
+      {"presenca":"Sim, vou","nome":"Egídio Dimande","telefone":"869576303","mensagem":"Que du bonheur","created_at":"2026-06-19T03:09:58.810Z"},
+      {"presenca":"Sim, vou","nome":"Anatércia Amélia Nhamende","telefone":"860194933","mensagem":"É uma dádiva de Deus, encontrar um amor que dá sentido a vida e quando Deus diz sim ninguém diz não. Benção e felicidade desejo-lhes","created_at":"2026-06-11T07:37:38.709Z"},
+      {"presenca":"Sim, vou","nome":"Cláudio J.B. de Araújo","telefone":"845985930","mensagem":"Os meus parabéns antecipados pelo passo por dar, que este seja somente o início de muitas outras obras do Senhor que serão manifestadas em vossas vidas...e que o vosso lar seja repleto de muito amor, felicidade, sucesso e alegria!","created_at":"2026-06-11T04:12:35.189Z"},
+      {"presenca":"Sim, vou","nome":"Cirilo de Almeida Manuel José Dique","telefone":"87364127","mensagem":"","created_at":"2026-06-05T19:59:33.751Z"},
+      {"presenca":"Sim, vou","nome":"Rosa Cândido","telefone":"","mensagem":"","created_at":"2026-06-05T17:06:51.975Z"},
+      {"presenca":"Não posso ir","nome":"David Dimbane","telefone":"843333147","mensagem":"Votos de uma vida conjugal super abençoada e frutífera. Felicidades e muita saúde.Abraços.","created_at":"2026-06-05T07:00:32.189Z"},
+      {"presenca":"Sim, vou","nome":"Arão da Conceição Silva Massango","telefone":"848668683","mensagem":"","created_at":"2026-06-05T06:45:30.119Z"},
+      {"presenca":"Sim, vou","nome":"José Duvane (Zeca) e Getúlia Duvane","telefone":"825254104","mensagem":"Que se amem sem fronteiras e que esse amor seja fonte de eternidade.” Deus abençoe o vosso casamento.","created_at":"2026-06-04T20:19:09.794Z"},
+      {"presenca":"Sim, vou","nome":"Teste","telefone":"843968894","mensagem":"Olá teste","created_at":"2026-06-04T12:20:18.139Z"},
+      {"presenca":"Sim, vou","nome":"Beth Namalué","telefone":"826939427","mensagem":"","created_at":"2026-06-04T11:40:32.552Z"},
+      {"presenca":"Sim, vou","nome":"Ester Xerinda","telefone":"876755348","mensagem":"Espero que seja uma data memorável e única😍😍😍","created_at":"2026-06-04T08:49:31.560Z"},
+      {"presenca":"Sim, vou","nome":"Gildo","telefone":"864448158","mensagem":"Desejamos que esta união seja abençoada com muito amor, respeito, cumplicidade e prosperidade. Que Deus guie cada etapa da vossa caminhada juntos e que a felicidade esteja sempre presente no vosso lar.\n\nMuito obrigado pelo convite. Será um prazer participar deste dia tão significativo para vocês.","created_at":"2026-06-04T08:23:41.738Z"},
+      {"presenca":"Sim, vou","nome":"Abignet felizberto Simão","telefone":"865980808","mensagem":"Felicidades! E que Deus abençoe vosso lar❤️","created_at":"2026-06-04T07:25:14.873Z"},
+      {"presenca":"Sim, vou","nome":"Francisca Neima","telefone":"869241527","mensagem":"Que Deus abençoe esta união e ilumine cada passo da caminhada que vocês iniciam juntos. Que o amor de Deus seja o alicerce do lar que vocês estão construindo. \nFelicidades ao casal.","created_at":"2026-06-04T07:20:07.634Z"},
+      {"presenca":"Sim, vou","nome":"Teodósio Comé","telefone":"852773429","mensagem":"O","created_at":"2026-06-04T05:33:26.515Z"},
+      {"presenca":"Sim, vou","nome":"Jorge Manuel de Alberto Chilundo","telefone":"848585873","mensagem":"Paz e amor...que seja um casamento feito na bênção do senhor","created_at":"2026-06-04T05:18:24.297Z"},
+      {"presenca":"Sim, vou","nome":"Esperança Mosse","telefone":"843968894","mensagem":"Meus filhos amados, felicidades.","created_at":"2026-06-03T23:51:31.421Z"}
+    ];
+
+    let activeFilter = 'todos';
+
+    function isYes(item) {
+      return item.presenca.toLowerCase().startsWith('sim');
+    }
+
+    function formatDate(value) {
+      return new Intl.DateTimeFormat('pt-MZ', {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+        timeZone: 'Africa/Maputo'
+      }).format(new Date(value));
+    }
+
+    function escapeHtml(value) {
+      return String(value || '').replace(/[&<>"']/g, (char) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      }[char]));
+    }
+
+    function filteredData() {
+      const query = document.getElementById('search').value.trim().toLowerCase();
+      return confirmations.filter((item) => {
+        const matchesFilter =
+          activeFilter === 'todos' ||
+          (activeFilter === 'sim' && isYes(item)) ||
+          (activeFilter === 'nao' && !isYes(item));
+
+        const haystack = `${item.nome} ${item.telefone} ${item.mensagem}`.toLowerCase();
+        return matchesFilter && (!query || haystack.includes(query));
+      });
+    }
+
+    function renderStats() {
+      const yes = confirmations.filter(isYes).length;
+      const no = confirmations.length - yes;
+      const messages = confirmations.filter((item) => item.mensagem.trim()).length;
+
+      document.getElementById('stat-total').textContent = confirmations.length;
+      document.getElementById('stat-yes').textContent = yes;
+      document.getElementById('stat-no').textContent = no;
+      document.getElementById('stat-msg').textContent = messages;
+    }
+
+    function render() {
+      const data = filteredData();
+      const rows = document.getElementById('rows');
+      const messages = data.filter((item) => item.mensagem.trim());
+
+      document.getElementById('visible-count').textContent = data.length;
+      document.getElementById('message-count').textContent = messages.length;
+
+      rows.innerHTML = data.length ? data.map((item) => {
+        const yes = isYes(item);
+        return `
+          <tr>
+            <td class="name">${escapeHtml(item.nome)}</td>
+            <td><span class="badge ${yes ? 'yes' : 'no'}">${escapeHtml(item.presenca)}</span></td>
+            <td class="phone">${escapeHtml(item.telefone || '-')}</td>
+            <td>${escapeHtml(formatDate(item.created_at))}</td>
+            <td>${escapeHtml(item.mensagem || '-')}</td>
+          </tr>
+        `;
+      }).join('') : '<tr><td colspan="5" class="empty">Nenhuma confirmação encontrada.</td></tr>';
+
+      document.getElementById('messages').innerHTML = messages.length ? messages.map((item) => `
+        <article class="message-card">
+          <strong>${escapeHtml(item.nome)}</strong>
+          <p>${escapeHtml(item.mensagem)}</p>
+        </article>
+      `).join('') : '<div class="empty">Sem mensagens neste filtro.</div>';
+    }
+
+    function setFilter(filter) {
+      activeFilter = filter;
+      document.querySelectorAll('.filter-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.filter === filter);
+      });
+      render();
+    }
+
+    function downloadCsv() {
+      const headers = ['presenca', 'nome', 'telefone', 'mensagem', 'created_at'];
+      const rows = filteredData().map((item) => headers.map((key) => {
+        const value = String(item[key] || '').replace(/"/g, '""');
+        return `"${value}"`;
+      }).join(','));
+      const csv = [headers.join(','), ...rows].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'confirmacoes-lobolo-filtradas.csv';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+
+    renderStats();
+    render();
+  </script>
+</body>
+</html>

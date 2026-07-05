@@ -1,4 +1,5 @@
 ﻿
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Convite de Lobolo - Joana e Esrom</title>
 <link rel="icon" type="image/png" href="assets/flor-laranja-canto.png">
 <link rel="apple-touch-icon" href="assets/flor-laranja-canto.png">
@@ -516,15 +517,162 @@
 
   .success-msg {
     text-align: center;
-    padding: 2rem;
+    padding: 2.2rem 1.4rem;
     display: none;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(216, 163, 60, 0.32);
+    border-radius: 0 22px 0 22px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(223, 90, 24, 0.16), transparent 46%),
+      rgba(255, 249, 239, 0.78);
+    box-shadow: 0 14px 34px rgba(112, 74, 51, 0.14);
   }
 
   .success-msg .success-icon {
-    font-size: 40px;
-    color: #C8952A;
+    font-size: 34px;
+    color: #FFF9EF;
     display: block;
+  }
+
+  .success-icon-wrap {
+    width: 74px;
+    height: 74px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    position: relative;
+    background: linear-gradient(135deg, var(--cover-orange), var(--cover-wine));
+    box-shadow: 0 16px 34px rgba(154, 20, 41, 0.24);
+    animation: success-pop 0.55s ease-out both;
+  }
+
+  .success-icon-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border: 1px solid rgba(223, 90, 24, 0.28);
+    border-radius: 50%;
+    animation: success-ring 1.35s ease-out infinite;
+  }
+
+  .success-burst {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
     margin-bottom: 1rem;
+  }
+
+  .success-burst span,
+  .heart-mark {
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    position: relative;
+    transform: rotate(-45deg);
+  }
+
+  .success-burst span::before,
+  .success-burst span::after,
+  .heart-mark::before,
+  .heart-mark::after {
+    content: '';
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+  }
+
+  .success-burst span::before,
+  .heart-mark::before {
+    top: -6.5px;
+    left: 0;
+  }
+
+  .success-burst span::after,
+  .heart-mark::after {
+    left: 6.5px;
+    top: 0;
+  }
+
+  .success-burst span {
+    background: linear-gradient(135deg, var(--cover-orange), var(--cover-wine));
+    animation: success-float 1.4s ease-in-out infinite;
+  }
+
+  .success-burst span::before,
+  .success-burst span::after {
+    background: inherit;
+  }
+
+  .success-burst span:nth-child(2) {
+    animation-delay: 0.18s;
+  }
+
+  .success-burst span:nth-child(3) {
+    animation-delay: 0.36s;
+  }
+
+  .hero-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    letter-spacing: 0;
+  }
+
+  .heart-mark {
+    width: auto;
+    height: auto;
+    display: inline-block;
+    position: static;
+    transform: none;
+    font-size: 34px;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--cover-orange), var(--cover-wine));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .heart-mark::before {
+    content: '♥';
+    position: static;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+    background: none;
+  }
+
+  .heart-mark.outline {
+    background: linear-gradient(135deg, var(--cover-orange), var(--cover-wine));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    border: 0;
+  }
+
+  .heart-mark.outline::before {
+    content: '♡';
+    background: inherit;
+    border: 0;
+  }
+
+  @keyframes success-pop {
+    0% { transform: scale(0.78); opacity: 0; }
+    70% { transform: scale(1.06); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes success-ring {
+    0% { transform: scale(0.85); opacity: 0.8; }
+    100% { transform: scale(1.28); opacity: 0; }
+  }
+
+  @keyframes success-float {
+    0%, 100% { transform: translateY(0) rotate(-45deg); }
+    50% { transform: translateY(-6px) rotate(-45deg); }
   }
 
   /* ── FAMILY MESSAGE ── */
@@ -1475,6 +1623,104 @@
   .gallery-item:nth-child(3) img {
     object-position: center 28%;
   }
+
+  @media (max-width: 480px) {
+    body {
+      background: var(--cover-paper);
+    }
+
+    .inv {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      box-shadow: none;
+      padding-bottom: 78px;
+    }
+
+    .hero {
+      min-height: auto;
+      padding: 1.7rem 1.25rem 2rem;
+      justify-content: flex-start;
+    }
+
+    .ornament {
+      margin-bottom: 0.75rem;
+      font-size: 18px;
+      letter-spacing: 8px;
+    }
+
+    .hero-label {
+      max-width: 300px;
+      margin-bottom: 0.95rem;
+      font-size: 8px;
+      letter-spacing: 2px;
+      line-height: 1.6;
+      white-space: normal;
+    }
+
+    .hero-title {
+      font-size: 38px;
+      line-height: 0.95;
+    }
+
+    .hero-visual {
+      width: min(100%, 292px);
+      margin: 1rem auto 1.1rem;
+      aspect-ratio: 4 / 5;
+    }
+
+    .hero-divider {
+      margin: 1rem auto 1.25rem;
+      width: 70%;
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .culture-ribbon {
+      max-width: 300px;
+      gap: 7px;
+      margin-top: 1.15rem;
+    }
+
+    .culture-ribbon span {
+      min-height: 42px;
+      padding: 7px 4px;
+      font-size: 8px;
+      border-radius: 12px;
+    }
+
+    .cta-btn {
+      margin-top: 1rem;
+      padding: 12px 32px;
+      font-size: 10px;
+      letter-spacing: 3px;
+    }
+
+    .flower-corner-top {
+      width: 150px;
+      top: -16px;
+      left: -46px;
+    }
+
+    .flower-corner-bottom {
+      width: 146px;
+      bottom: -2px;
+      left: -34px;
+    }
+
+    .section {
+      padding: 3rem 1.25rem;
+    }
+
+    .quick-nav {
+      bottom: 10px;
+      width: calc(100vw - 24px);
+      padding: 7px;
+    }
+  }
 </style>
 
 <div class="inv" id="inv">
@@ -1502,7 +1748,11 @@
   <div class="hero" id="s0">
     <img class="flower-corner flower-corner-top" src="assets/flor-laranja-canto.png" alt="" aria-hidden="true">
     <img class="flower-corner flower-corner-bottom" src="assets/flor-laranja-canto.png" alt="" aria-hidden="true">
-    <div class="ornament">◆ ◇ ◆</div>
+    <div class="ornament hero-ornament" aria-hidden="true">
+      <span class="heart-mark"></span>
+      <span class="heart-mark outline"></span>
+      <span class="heart-mark"></span>
+    </div>
     <span class="hero-label">Casamento Tradicional · Lobolo · 2026</span>
     <h1 class="serif hero-title">
       Joana<br>
@@ -1547,14 +1797,14 @@
       <br><br>
       O que começou como uma amizade transformou-se numa história construída com carinho, respeito e propósito.
       <br><br>
-      Hoje, com a bênção das nossas famílias, nos reunimos para celebrar o nosso casamento tradicional e dar mais um passo na jornada que escolhemos seguir juntos.
+      Hoje, com a bênção das nossas famílias, reunimo-nos para celebrar o nosso casamento tradicional e dar mais um passo na jornada que escolhemos seguir juntos.
     </p>
 
     <div class="lobolo-symbols">
       <div class="symbol-card">
         <i class="ti ti-users-group symbol-icon" aria-hidden="true"></i>
         <span class="symbol-title">Famílias</span>
-        <p class="symbol-text">Duas tradicoes, um só caminho.</p>
+        <p class="symbol-text">Duas tradições, um só caminho.</p>
       </div>
       <div class="symbol-card">
         <i class="ti ti-bowl symbol-icon" aria-hidden="true"></i>
@@ -1582,12 +1832,12 @@
       <div class="detail-card">
         <i class="ti ti-calendar detail-icon" aria-hidden="true"></i>
         <span class="detail-label">Data</span>
-        <span class="detail-value">Sábado<br>27 de Junho de 2026</span>
+        <span class="detail-value">Sábado<br>11 de Julho de 2026</span>
       </div>
       <div class="detail-card">
         <i class="ti ti-clock detail-icon" aria-hidden="true"></i>
         <span class="detail-label">Hora</span>
-        <span class="detail-value">14h00<br>Copo de agua</span>
+        <span class="detail-value">14h00<br>Copo de água</span>
       </div>
       <div class="detail-card full">
         <i class="ti ti-map-pin detail-icon" aria-hidden="true"></i>
@@ -1606,7 +1856,7 @@
       <div class="program-list">
         <div class="program-item">
           <span class="program-time">10h30</span>
-          <div class="program-desc"><strong>Chegada das famílias</strong>Recepção e cumprimentos tradicionais</div>
+          <div class="program-desc"><strong>Chegada das famílias</strong>Receção e cumprimentos tradicionais</div>
         </div>
         <div class="program-item">
           <span class="program-time">11h00</span>
@@ -1626,7 +1876,7 @@
         </div>
         <div class="program-item" style="border-bottom: none;">
           <span class="program-time">Ao raiar <br> do Sol</span>
-          <div class="program-desc"><strong>Diversão</strong>Dança e curtição ate perder o BI😂</div>
+          <div class="program-desc"><strong>Diversão</strong>Dança e curtição até perder o BI 😂</div>
         </div>
       </div>
     </div>
@@ -1685,15 +1935,19 @@
     <span class="section-label">Confirmação</span>
     <h2 class="serif section-title">Confirme<br>a sua presença</h2>
 
-    <div id="rsvp-form-wrap">
-      <div class="rsvp-form">
+    <form id="rsvp-form-wrap" class="rsvp-form" name="confirmacoes-lobolo" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="submitRsvp(event)">
+      <input type="hidden" name="form-name" value="confirmacoes-lobolo">
+      <p style="display: none;">
+        <label>Não preencher: <input name="bot-field"></label>
+      </p>
+      <input type="hidden" name="presenca" id="f-attending">
         <div class="form-field">
           <label class="form-label">Nome completo</label>
-          <input type="text" class="form-input" placeholder="O seu nome" id="f-name">
+          <input type="text" class="form-input" placeholder="O seu nome" id="f-name" name="nome" required>
         </div>
         <div class="form-field">
           <label class="form-label">Número de telefone</label>
-          <input type="tel" class="form-input" placeholder="+258 8X XXX XXXX" id="f-phone">
+          <input type="tel" class="form-input" placeholder="8X XXX XXXX" id="f-phone" name="telefone">
         </div>
         <div class="form-field">
           <label class="form-label" style="margin-bottom: 8px;">Vai estar presente?</label>
@@ -1715,16 +1969,22 @@
         </div> -->
         <div class="form-field">
           <label class="form-label">Mensagem (opcional)</label>
-          <textarea class="form-textarea" rows="3" placeholder="Uma mensagem para o casal..." id="f-msg" style="resize: none;"></textarea>
+          <textarea class="form-textarea" rows="3" placeholder="Uma mensagem para o casal..." id="f-msg" name="mensagem" style="resize: none;"></textarea>
         </div>
-        <button class="submit-btn" onclick="submitRsvp()">Confirmar Presença</button>
-      </div>
-    </div>
+        <button class="submit-btn" type="submit">Confirmar Presença</button>
+    </form>
 
     <div class="success-msg" id="rsvp-success">
-      <i class="ti ti-check success-icon" aria-hidden="true"></i>
-      <h3 class="serif" style="font-size: 22px; color: #F5EDD8; margin-bottom: 12px;">Obrigado!</h3>
-      <p style="font-size: 13px; color: rgba(245,237,216,0.6); line-height: 1.8;">A sua confirmação foi recebida.<br>Esperamos por si neste dia especial.</p>
+      <div class="success-burst" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="success-icon-wrap">
+        <i class="ti ti-check success-icon" aria-hidden="true"></i>
+      </div>
+      <h3 class="serif" style="font-size: 24px; color: var(--cover-wine); margin-bottom: 12px;">Confirmação enviada!</h3>
+      <p style="font-size: 13px; color: var(--cover-brown); line-height: 1.8;">Obrigado pela sua resposta.<br>Guardámos a sua presença com carinho para este dia especial.</p>
     </div>
 
     <!-- <div class="section-actions">
@@ -1746,13 +2006,13 @@
     <div style="margin-top: 2rem;">
       <div class="gallery-grid">
         <div class="gallery-item">
-          <img src="assets/4.jpeg" alt="Mesa de celebracao do lobolo com tecidos, cestos e presentes tradicionais">
+          <img src="assets/4.jpeg" alt="Mesa de celebração do lobolo com tecidos, cestos e presentes tradicionais">
         </div>
         <div class="gallery-item">
-          <img src="assets/7.jpeg" alt="Familias reunidas numa celebracao de lobolo">
+          <img src="assets/7.jpeg" alt="Famílias reunidas numa celebração de lobolo">
         </div>
         <div class="gallery-item">
-          <img src="assets/9.jpeg" alt="Casal e familias no momento de bencao">
+          <img src="assets/9.jpeg" alt="Casal e famílias no momento de bênção">
         </div>
       </div>
     </div>
@@ -1765,14 +2025,18 @@
 
   <!-- 8. CLOSING -->
   <div class="closing">
-    <div class="ornament" style="margin-bottom: 2rem;">◆ ◇ ◆</div>
+    <div class="ornament hero-ornament" style="margin-bottom: 2rem;" aria-hidden="true">
+      <span class="heart-mark"></span>
+      <span class="heart-mark outline"></span>
+      <span class="heart-mark"></span>
+    </div>
     <p class="serif closing-quote">
       "Acima de tudo, revistam-se do amor, que é o elo perfeito."
       <br>
       (Colossenses 3:14)
     </p>
     <div class="closing-names serif">Joana &amp; Esrom</div>
-    <!-- <div class="closing-date">27 · Junho · 2026 · Zimpeto, Maputo</div>
+    <!-- <div class="closing-date">11 · Julho · 2026 · Zimpeto, Maputo</div>
     <div style="margin-top: 3rem; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(163, 120, 11, 0.2);">Lobolo · Uma Tradição Sagrada</div> -->
   </div>
 
@@ -1802,21 +2066,40 @@
 
   function selectAttend(val) {
     attending = val;
+    document.getElementById('f-attending').value = val === 'yes' ? 'Sim, vou' : 'Não posso ir';
     document.getElementById('opt-yes').classList.toggle('selected', val === 'yes');
     document.getElementById('opt-no').classList.toggle('selected', val === 'no');
   }
 
-  function submitRsvp() {
-    const name = document.getElementById('f-name').value.trim();
-    if (!name) { alert('Por favor insira o seu nome.'); return; }
+  function showRsvpSuccess() {
     document.getElementById('rsvp-form-wrap').style.display = 'none';
     const s = document.getElementById('rsvp-success');
     s.style.display = 'block';
   }
 
-  // Countdown to March 15, 2025 (example date)
+  function submitRsvp(event) {
+    event.preventDefault();
+    const name = document.getElementById('f-name').value.trim();
+    if (!name) { alert('Por favor insira o seu nome.'); return; }
+    if (!attending) { alert('Por favor confirme se vai estar presente.'); return; }
+
+    const form = document.getElementById('rsvp-form-wrap');
+    const body = new URLSearchParams(new FormData(form)).toString();
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body
+    })
+      .then(() => showRsvpSuccess())
+      .catch(() => {
+        alert('Não foi possível enviar a confirmação agora. Por favor tente novamente.');
+      });
+  }
+
+  // Countdown to July 11, 2026
   function updateCountdown() {
-    const target = new Date('2026-06-27T14:00:00');
+    const target = new Date('2026-07-11T14:00:00');
     const now = new Date();
     const diff = target - now;
     if (diff <= 0) {

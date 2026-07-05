@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Mensagens do Lobolo - Joana e Esrom</title>
+  <link rel="icon" type="image/png" href="../assets/flor-laranja-canto.png">
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --paper: #FFF9EF;
+      --ivory: #F7F4EA;
+      --orange: #DF5A18;
+      --wine: #9A1429;
+      --brown: #8D6757;
+      --dark: #17100D;
+      --gold: #D8A33C;
+      --line: rgba(216, 163, 60, 0.30);
+    }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(223,90,24,.14), transparent 28%),
+        linear-gradient(135deg, rgba(223, 90, 24, 0.06), rgba(154, 20, 41, 0.04)),
+        var(--ivory);
+      color: var(--dark);
+    }
+    .page { width: min(1040px, calc(100% - 28px)); margin: 0 auto; padding: 32px 0 44px; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 24px; }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img { width: 52px; height: 52px; object-fit: cover; }
+    .eyebrow { display: block; color: var(--orange); font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+    h1 { margin: 4px 0 0; color: var(--wine); font: 400 clamp(30px, 5vw, 52px)/0.98 Georgia, serif; }
+    .nav { display: flex; gap: 8px; flex-wrap: wrap; }
+    .nav a, button {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 13px;
+      color: var(--wine);
+      background: rgba(255, 249, 239, 0.76);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    button.primary { color: #FFF9EF; background: linear-gradient(135deg, var(--orange), var(--wine)); border: 0; }
+    .tools { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-bottom: 18px; }
+    input {
+      min-height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 14px;
+      background: rgba(255,249,239,.90);
+      color: var(--dark);
+      font: inherit;
+    }
+    .summary {
+      margin-bottom: 18px;
+    }
+    .stat {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(223,90,24,.10), rgba(154,20,41,.04)),
+        rgba(255,249,239,.86);
+      box-shadow: 0 12px 28px rgba(112,74,51,.10);
+    }
+    .stat span { display: block; color: var(--brown); font-size: 12px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; }
+    .stat strong {
+      min-width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      display: inline-grid;
+      place-items: center;
+      padding: 0 14px;
+      color: #FFF9EF;
+      background: linear-gradient(135deg, var(--orange), var(--wine));
+      box-shadow: 0 12px 24px rgba(154, 20, 41, 0.18);
+      font-size: 17px;
+      line-height: 1;
+      font-weight: 900;
+    }
+    .messages {
+      display: grid;
+      gap: 12px;
+    }
+    .card {
+      position: relative;
+      min-height: 0;
+      padding: 20px 22px 20px 58px;
+      border: 1px solid var(--line);
+      border-radius: 0 18px 0 18px;
+      background: rgba(255,249,239,.84);
+      box-shadow: 0 14px 34px rgba(112,74,51,.10);
+      overflow: hidden;
+    }
+    .card::before {
+      content: '“';
+      position: absolute;
+      top: 10px;
+      left: 18px;
+      width: auto;
+      height: auto;
+      color: rgba(223, 90, 24, 0.24);
+      background: none;
+      font: 400 64px/1 Georgia, serif;
+    }
+    .card strong { display: block; margin-bottom: 10px; color: var(--wine); font: 400 22px/1.1 Georgia, serif; }
+    .card p { margin: 0; color: var(--brown); font-size: 15px; line-height: 1.7; white-space: pre-wrap; }
+    .meta {
+      display: inline-flex;
+      margin-top: 14px;
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: var(--orange);
+      background: rgba(223, 90, 24, 0.08);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+    .empty { grid-column: 1 / -1; padding: 30px; color: var(--brown); text-align: center; }
+    @media (max-width: 760px) {
+      header, .tools { grid-template-columns: 1fr; flex-direction: column; align-items: stretch; }
+      .summary { grid-template-columns: 1fr; }
+      .stat { align-items: center; flex-direction: row; }
+      .card { padding: 18px 18px 18px 48px; }
+      .nav { width: 100%; }
+      .nav a, button { flex: 1; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="brand">
+        <img src="../assets/flor-laranja-canto.png" alt="">
+        <div>
+          <span class="eyebrow">Joana & Esrom</span>
+          <h1>Mensagens<br>dos convidados</h1>
+        </div>
+      </div>
+      <!-- <nav class="nav" aria-label="Páginas">
+        <a href="completo.html">Completo</a>
+        <a href="sem-mensagens.html">Sem mensagens</a>
+      </nav> -->
+    </header>
+
+    <section class="summary">
+      <div class="stat"><span>Mensagens</span><strong id="message-total">0</strong></div>
+    </section>
+
+    <section class="tools">
+      <input id="search" type="search" placeholder="Pesquisar por nome ou mensagem..." oninput="render()">
+      <button class="primary" type="button" onclick="downloadCsv()">Exportar mensagens</button>
+    </section>
+
+    <section class="messages" id="messages"></section>
+  </main>
+
+  <script>
+    const confirmations = [
+      {"nome":"Egídio Dimande","presenca":"Sim, vou","mensagem":"Que du bonheur","created_at":"2026-06-19T03:09:58.810Z"},
+      {"nome":"Anatércia Amélia Nhamende","presenca":"Sim, vou","mensagem":"É uma dádiva de Deus, encontrar um amor que dá sentido a vida e quando Deus diz sim ninguém diz não. Benção e felicidade desejo-lhes","created_at":"2026-06-11T07:37:38.709Z"},
+      {"nome":"Cláudio J.B. de Araújo","presenca":"Sim, vou","mensagem":"Os meus parabéns antecipados pelo passo por dar, que este seja somente o início de muitas outras obras do Senhor que serão manifestadas em vossas vidas...e que o vosso lar seja repleto de muito amor, felicidade, sucesso e alegria!","created_at":"2026-06-11T04:12:35.189Z"},
+      {"nome":"Cirilo de Almeida Manuel José Dique","presenca":"Sim, vou","mensagem":"","created_at":"2026-06-05T19:59:33.751Z"},
+      {"nome":"Rosa Cândido","presenca":"Sim, vou","mensagem":"","created_at":"2026-06-05T17:06:51.975Z"},
+      {"nome":"David Dimbane","presenca":"Não posso ir","mensagem":"Votos de uma vida conjugal super abençoada e frutífera. Felicidades e muita saúde.Abraços.","created_at":"2026-06-05T07:00:32.189Z"},
+      {"nome":"Arão da Conceição Silva Massango","presenca":"Sim, vou","mensagem":"","created_at":"2026-06-05T06:45:30.119Z"},
+      {"nome":"José Duvane (Zeca) e Getúlia Duvane","presenca":"Sim, vou","mensagem":"Que se amem sem fronteiras e que esse amor seja fonte de eternidade.” Deus abençoe o vosso casamento.","created_at":"2026-06-04T20:19:09.794Z"},
+      {"nome":"Teste","presenca":"Sim, vou","mensagem":"Olá teste","created_at":"2026-06-04T12:20:18.139Z"},
+      {"nome":"Beth Namalué","presenca":"Sim, vou","mensagem":"","created_at":"2026-06-04T11:40:32.552Z"},
+      {"nome":"Ester Xerinda","presenca":"Sim, vou","mensagem":"Espero que seja uma data memorável e única😍😍😍","created_at":"2026-06-04T08:49:31.560Z"},
+      {"nome":"Gildo","presenca":"Sim, vou","mensagem":"Desejamos que esta união seja abençoada com muito amor, respeito, cumplicidade e prosperidade. Que Deus guie cada etapa da vossa caminhada juntos e que a felicidade esteja sempre presente no vosso lar.\n\nMuito obrigado pelo convite. Será um prazer participar deste dia tão significativo para vocês.","created_at":"2026-06-04T08:23:41.738Z"},
+      {"nome":"Abignet felizberto Simão","presenca":"Sim, vou","mensagem":"Felicidades! E que Deus abençoe vosso lar❤️","created_at":"2026-06-04T07:25:14.873Z"},
+      {"nome":"Francisca Neima","presenca":"Sim, vou","mensagem":"Que Deus abençoe esta união e ilumine cada passo da caminhada que vocês iniciam juntos. Que o amor de Deus seja o alicerce do lar que vocês estão construindo. \nFelicidades ao casal.","created_at":"2026-06-04T07:20:07.634Z"},
+      {"nome":"Teodósio Comé","presenca":"Sim, vou","mensagem":"O","created_at":"2026-06-04T05:33:26.515Z"},
+      {"nome":"Jorge Manuel de Alberto Chilundo","presenca":"Sim, vou","mensagem":"Paz e amor...que seja um casamento feito na bênção do senhor","created_at":"2026-06-04T05:18:24.297Z"},
+      {"nome":"Esperança Mosse","presenca":"Sim, vou","mensagem":"Meus filhos amados, felicidades.","created_at":"2026-06-03T23:51:31.421Z"}
+    ];
+
+    function esc(value) { return String(value || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
+    function date(value) {
+      return new Intl.DateTimeFormat('pt-MZ', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Africa/Maputo' }).format(new Date(value));
+    }
+    function messagesOnly() { return confirmations.filter(item => item.mensagem.trim()); }
+    function filtered() {
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      return messagesOnly().filter(item => !q || `${item.nome} ${item.mensagem}`.toLowerCase().includes(q));
+    }
+    function render() {
+      const data = filtered();
+      document.getElementById('message-total').textContent = messagesOnly().length;
+      document.getElementById('messages').innerHTML = data.length ? data.map(item => `
+        <article class="card">
+          <strong>${esc(item.nome)}</strong>
+          <p>${esc(item.mensagem)}</p>
+          <span class="meta">${esc(item.presenca)} · ${esc(date(item.created_at))}</span>
+        </article>
+      `).join('') : '<div class="empty">Nenhuma mensagem encontrada.</div>';
+    }
+    function downloadCsv() {
+      const headers = ['nome', 'presenca', 'mensagem', 'created_at'];
+      const rows = filtered().map(item => headers.map(key => `"${String(item[key] || '').replace(/"/g, '""')}"`).join(','));
+      const blob = new Blob([[headers.join(','), ...rows].join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'mensagens-lobolo.csv';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+    render();
+  </script>
+</body>
+</html>
